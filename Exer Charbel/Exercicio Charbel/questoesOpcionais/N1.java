@@ -1,0 +1,62 @@
+package questoesOpcionais;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class N1 {
+
+	static double[] combinaVetores(double[] vet1, double[] vet2) {
+		int j = 0, k = 0;
+		double vetCombinado[] = new double[vet1.length + vet2.length];
+		for (int i = 0; i < vetCombinado.length; i++) {
+			if (j < vet1.length && k < vet2.length) {
+				if (vet1[j] < vet2[k]) {
+					vetCombinado[i] = vet1[j];
+					j++;
+				} else {
+					vetCombinado[i] = vet2[k];
+					k++;
+				}
+			} else if (k < vet2.length) {
+					vetCombinado[i] = vet2[k];
+					k++;
+			} else if (j < vet1.length) {
+					vetCombinado[i] = vet1[j];
+					j++;
+			}
+		}
+		return vetCombinado;
+
+	}
+
+	public static void main(String[] args) {
+
+		int n = 10;
+		Random random = new Random();
+
+		double vet1[] = new double[n];
+		double vet2[] = new double[n];
+
+		for (int i = 0; i < vet1.length; i++) {
+			vet1[i] = random.nextInt(10);
+			vet2[i] = random.nextInt(10);
+		}
+		Arrays.sort(vet1);
+		Arrays.sort(vet2);
+		System.out.println("-----Vetor separado-----");
+
+		for (int i = 0; i < vet1.length; i++) {
+			System.out.print(vet1[i] + "  ");
+
+		}
+		System.out.println("  ");
+		System.out.println("  ");
+		for (int i = 0; i < vet2.length; i++) {
+			System.out.print(vet2[i] + "  ");
+		}
+		System.out.println("  ");
+		System.out.println("  ");
+		System.out.println("-----Vetores juntos-----");
+		System.out.println(Arrays.toString(combinaVetores(vet1, vet2)));
+	}
+}
